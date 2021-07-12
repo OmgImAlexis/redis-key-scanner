@@ -87,11 +87,7 @@ function sanitizeOptions(rawOptions) {
   if (!options.host) {
     throw new TypeError('Host is required');
   }
-  options.port = Number(options.port);
-  if (!options.port) {
-    throw new TypeError('Port number is required');
-  }
-
+  options.port = Number(options.port) || defaults.redisPort;
   options.pattern = options.pattern || defaults.pattern;
 
   _.each(['maxIdle', 'maxTTL', 'minIdle', 'minTTL'], (opt) => {
